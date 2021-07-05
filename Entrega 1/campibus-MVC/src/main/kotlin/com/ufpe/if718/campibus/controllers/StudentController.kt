@@ -1,27 +1,25 @@
 package com.ufpe.if718.campibus.controllers
 
+import com.ufpe.if718.campibus.dto.StudentDTO
 import com.ufpe.if718.campibus.model.GeneralFacade
-import com.ufpe.if718.campibus.model.entities.Student
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.*
 
-@Controller("v1/student")
+@Controller
 class StudentController(private val generalFacade: GeneralFacade) {
 
-   // private val generalFacade = GeneralFacade.instance
-
-    @PostMapping
+    @PostMapping("/student")
     fun saveStudent(
-        @RequestBody student: Student,
+        @RequestBody student: StudentDTO,
         model: Model
     ): String {
-        val studentWithId = generalFacade.saveStudent(student)
+        val studentWithId = generalFacade.saveStudent(student.buildToDomain())
         model.addAttribute(studentWithId)
         return "saved"
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/student/{id}")
     fun getStudent(
         @PathVariable id: String,
         model: Model
@@ -31,18 +29,27 @@ class StudentController(private val generalFacade: GeneralFacade) {
         return "ok"
     }
 
-    @PatchMapping("{id}")
-    fun updateStudent(
-        @PathVariable id: String,
-        @RequestBody student: Student,
+    @GetMapping("/student")
+    fun getAllStudents(
         model: Model
     ): String {
-        val student = generalFacade.updateStudent(id, student)
+        val students = generalFacade.getAllStudents()
+        model.addAttribute(students)
+        return "studentList"
+    }
+
+    @PatchMapping("student/{id}")
+    fun updateStudent(
+        @PathVariable id: String,
+        @RequestBody student: StudentDTO,
+        model: Model
+    ): String {
+        val student = generalFacade.updateStudent(id, student.buildToDomain())
         model.addAttribute(student)
         return "updated"
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/student/{id}")
     fun deleteStudent(
         @PathVariable id: String,
         model: Model

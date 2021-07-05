@@ -8,6 +8,7 @@ import java.util.*
 
 @Component
 class StudentDAOImpl(private val studentRepository: StudentRepository) : StudentDAO {
+
     override fun save(student: Student): Student {
         return studentRepository.save(student)
     }
@@ -17,9 +18,13 @@ class StudentDAOImpl(private val studentRepository: StudentRepository) : Student
         return studentRepository.getById(id)
     }
 
+    override fun getAll(): List<Student> {
+        return studentRepository.findAll()
+    }
+
     override fun updateById(studentId: String, student: Student): Student {
-        val studentUpdated: Student
         val id = UUID.fromString(studentId)
+        studentRepository.deleteById(id)
         return studentRepository.save(student)
     }
 

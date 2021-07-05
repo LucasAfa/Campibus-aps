@@ -7,15 +7,13 @@ import org.springframework.stereotype.Component
 @Component
 class GeneralFacade(private val studentService: StudentService) {
 
-//    private val studentService = StudentServiceImpl.instance
-//
-//    companion object {
-//        val instance = GeneralFacade()
-//    }
-
     // student actions
     fun getStudentById(studentId: String): Student {
         return studentService.getById(studentId)
+    }
+
+    fun getAllStudents(): List<Student> {
+        return studentService.getAll()
     }
 
     fun saveStudent(student: Student): Student {

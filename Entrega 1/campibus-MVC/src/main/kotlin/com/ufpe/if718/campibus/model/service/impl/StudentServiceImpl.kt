@@ -8,18 +8,16 @@ import org.springframework.stereotype.Service
 @Service
 class StudentServiceImpl(private val studentDAO: StudentDAO) : StudentService {
 
-//    private val studentRepository: StudentRepository = TODO()
-//
-//    companion object {
-//        val instance = StudentServiceImpl()
-//    }
-
     override fun save(student: Student): Student {
         return studentDAO.save(student)
     }
 
     override fun getById(studentId: String): Student {
         return studentDAO.getById(studentId)
+    }
+
+    override fun getAll(): List<Student> {
+        return studentDAO.getAll()
     }
 
     override fun updateById(studentId: String, student: Student): Student {

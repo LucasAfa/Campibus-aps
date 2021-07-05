@@ -9,8 +9,8 @@ import javax.persistence.Table
 @Entity
 data class Student private constructor(
     @Id
-    private val id: UUID,
-    private val name: String,
+    private val id: UUID?,
+    private val name: String?,
     private val age: Int?,
     private val school: String?,
     private val course: String?,
@@ -18,11 +18,11 @@ data class Student private constructor(
     private val creditCardId: String? = null,
 ) {
     data class Builder(
-        private var id: UUID,
-        private var name: String,
-        private var age: Int,
-        private var school: String,
-        private var course: String,
+        private var id: UUID? = null,
+        private var name: String? = null,
+        private var age: Int? = null,
+        private var school: String? = null,
+        private var course: String? = null,
         private var busId: String? = null,
         private var creditCardId: String? = null,
     ) {
