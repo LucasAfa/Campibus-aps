@@ -2,6 +2,7 @@ package com.ufpe.if718.campibus.model.dao.impl
 
 import com.ufpe.if718.campibus.model.dao.StudentDAO
 import com.ufpe.if718.campibus.model.dao.repository.StudentRepository
+import com.ufpe.if718.campibus.model.entities.Card
 import com.ufpe.if718.campibus.model.entities.Student
 import org.springframework.stereotype.Component
 import java.util.*
@@ -24,8 +25,18 @@ class StudentDAOImpl(private val studentRepository: StudentRepository) : Student
 
     override fun updateById(studentId: String, student: Student): Student {
         val id = UUID.fromString(studentId)
-        studentRepository.deleteById(id)
-        return studentRepository.save(student)
+        if(studentRepository.existsById(id)){
+            return studentRepository.save(student.copy(id = id))
+        }
+        return student
+    }
+
+    override fun updateCard(studentId: String, card: Card) {
+        val id = UUID.fromString(studentId)
+        var studentOpt = studentRepository.findById(id)
+        if(studentOpt.isPresent){
+             studentRepository.save(studentOpt.get().copy(card = card))
+        }
     }
 
     override fun delete(studentId: String) {

@@ -7,9 +7,10 @@ import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.*
 
 @Controller
+@RequestMapping("student")
 class StudentController(private val generalFacade: GeneralFacade) {
 
-    @PostMapping("/student")
+    @PostMapping
     fun saveStudent(
         @RequestBody student: StudentDTO,
         model: Model
@@ -19,7 +20,7 @@ class StudentController(private val generalFacade: GeneralFacade) {
         return "saved"
     }
 
-    @GetMapping("/student/{id}")
+    @GetMapping("{id}")
     fun getStudent(
         @PathVariable id: String,
         model: Model
@@ -29,7 +30,7 @@ class StudentController(private val generalFacade: GeneralFacade) {
         return "ok"
     }
 
-    @GetMapping("/student")
+    @GetMapping
     fun getAllStudents(
         model: Model
     ): String {
@@ -38,7 +39,7 @@ class StudentController(private val generalFacade: GeneralFacade) {
         return "studentList"
     }
 
-    @PatchMapping("student/{id}")
+    @PatchMapping("{id}")
     fun updateStudent(
         @PathVariable id: String,
         @RequestBody student: StudentDTO,
@@ -49,7 +50,7 @@ class StudentController(private val generalFacade: GeneralFacade) {
         return "updated"
     }
 
-    @DeleteMapping("/student/{id}")
+    @DeleteMapping("{id}")
     fun deleteStudent(
         @PathVariable id: String,
         model: Model
