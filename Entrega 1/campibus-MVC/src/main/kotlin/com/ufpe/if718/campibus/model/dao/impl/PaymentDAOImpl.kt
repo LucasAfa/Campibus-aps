@@ -13,10 +13,9 @@ class PaymentDAOImpl(private val paymentRepository: PaymentRepository) : Payment
         return paymentRepository.save(payment)
     }
 
-    override fun getAllByStudentId(studentId:String): List<Payment> {
+    override fun getAllByStudentId(studentId: String): List<Payment> {
         val id = UUID.fromString(studentId)
-        TODO()
-       // return paymentRepository.findAllById(id)
+        return paymentRepository.getAllByStudentId(id)
     }
 
 }

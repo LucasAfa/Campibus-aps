@@ -55,8 +55,8 @@ class GeneralFacade(
     }
 
     // payment actions
-    fun payMonthBilling(studentId: String): Payment {
-        return paymentService.payMonthBilling(studentId)
+    fun payMonthBilling(cardId: String, studentId: String): Payment {
+        return paymentService.payMonthBilling(cardId, studentId)
     }
 
     fun getPayments(studentId: String): List<Payment> {

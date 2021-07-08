@@ -1,7 +1,6 @@
 package com.ufpe.if718.campibus.controllers
 
-import com.ufpe.if718.campibus.dto.CardDTO
-import com.ufpe.if718.campibus.dto.SaveCardRequest
+import com.ufpe.if718.campibus.dto.SaveCardDTO
 import com.ufpe.if718.campibus.model.GeneralFacade
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -13,7 +12,7 @@ class CardController(private val generalFacade: GeneralFacade) {
 
     @PostMapping
     fun saveCard(
-        @RequestBody requestBody: SaveCardRequest,
+        @RequestBody requestBody: SaveCardDTO,
         model: Model
     ): String {
 

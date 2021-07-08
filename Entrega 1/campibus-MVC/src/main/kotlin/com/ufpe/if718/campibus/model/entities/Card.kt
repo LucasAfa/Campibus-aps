@@ -1,5 +1,6 @@
 package com.ufpe.if718.campibus.model.entities
 
+import org.hibernate.annotations.Type
 import java.util.*
 import javax.persistence.Entity
 import javax.persistence.Id
@@ -9,6 +10,7 @@ import javax.persistence.Table
 @Entity
 data class Card private constructor(
     @Id
+    @Type(type="uuid-char")
     private val id: UUID?,
     private val ownerName: String?,
     private val cardholder: String?,
