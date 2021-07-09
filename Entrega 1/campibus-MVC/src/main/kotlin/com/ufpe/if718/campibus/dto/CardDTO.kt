@@ -1,7 +1,6 @@
 package com.ufpe.if718.campibus.dto
 
 import com.ufpe.if718.campibus.model.entities.Card
-import java.util.*
 
 data class CardDTO(
     private val ownerName: String,
