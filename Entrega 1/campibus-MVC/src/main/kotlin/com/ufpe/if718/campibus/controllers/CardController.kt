@@ -1,24 +1,35 @@
 package com.ufpe.if718.campibus.controllers
 
+import com.fasterxml.jackson.databind.node.ObjectNode
+import com.ufpe.if718.campibus.dto.CardDTO
 import com.ufpe.if718.campibus.dto.SaveCardDTO
 import com.ufpe.if718.campibus.model.GeneralFacade
+import com.ufpe.if718.campibus.model.entities.Card
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.*
 
 @Controller
-@RequestMapping("card")
+@RequestMapping("/card")
 class CardController(private val generalFacade: GeneralFacade) {
 
-    @PostMapping
-    fun saveCard(
-        @RequestBody requestBody: SaveCardDTO,
-        model: Model
-    ): String {
+    @GetMapping("/addCardForm/{studentId}")
+    fun addCardForm(@PathVariable studentId: String, model: Model): String {
+        val cardModel = CardDTO().buildToDomain()
+        model.addAttribute("cardModel", cardModel)
+        model.addAttribute("studentId", studentId)
+        return "addCardForm"
+    }
 
-        val cardDomain = generalFacade.saveCard(requestBody.card.buildToDomain(), requestBody.studentId)
-        model.addAttribute(cardDomain)
-        return "saved-card"
+    @PostMapping("/saveCard/{studentId}")
+    fun saveCard(
+            @PathVariable studentId: String,
+            requestBody: CardDTO,
+            model: Model
+    ): String {
+        generalFacade.saveCard(requestBody.buildToDomain(), studentId)
+        model.addAttribute("studentId", studentId)
+        return "cardSaved"
     }
 
     @GetMapping("{id}")
@@ -31,13 +42,15 @@ class CardController(private val generalFacade: GeneralFacade) {
         return "ok-card"
     }
 
-    @GetMapping
+    @GetMapping("/cardsList/{studentId}")
     fun getAllCards(
-        model: Model
+       @PathVariable studentId: String,
+       model: Model
     ): String {
         val cards = generalFacade.getAllCards()
-        model.addAttribute(cards)
-        return "CardList"
+        model.addAttribute("cards", cards)
+        model.addAttribute("studentId", studentId)
+        return "cardsList"
     }
 
     @DeleteMapping("{id}")

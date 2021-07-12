@@ -7,17 +7,19 @@ import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.*
 
 @Controller
-@RequestMapping("payment")
+@RequestMapping("/payment")
 class PaymentController(private val generalFacade: GeneralFacade) {
 
-    @PostMapping
+    @GetMapping("/makePayment/{studentId}/{cardId}")
     fun makePayment(
-        @RequestBody data: MakePaymentDTO,
-        model: Model
+            @PathVariable(value = "studentId") studentId : String,
+            @PathVariable(value = "cardId") cardId : String,
+            model: Model
     ): String {
-        val payment = generalFacade.payMonthBilling(data.cardId, data.studentId)
-        model.addAttribute(payment)
-        return "payment-success"
+        val payment = generalFacade.payMonthBilling(cardId, studentId)
+        model.addAttribute("payment", payment)
+        model.addAttribute("studentId", studentId)
+        return "paymentSuccess"
     }
 
     @GetMapping

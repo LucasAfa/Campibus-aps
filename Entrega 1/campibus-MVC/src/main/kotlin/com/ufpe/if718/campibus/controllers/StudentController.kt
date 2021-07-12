@@ -6,28 +6,36 @@ import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.*
 
+
 @Controller
-@RequestMapping("student")
+@RequestMapping("/student")
 class StudentController(private val generalFacade: GeneralFacade) {
 
-    @PostMapping
+    @GetMapping("/addStudentForm")
+    fun addStudentForm(model: Model): String {
+        val studentModel = StudentDTO().buildToDomain()
+        model.addAttribute("studentModel", studentModel)
+        return "addStudentForm"
+    }
+
+    @PostMapping("/saveStudent")
     fun saveStudent(
-        @RequestBody student: StudentDTO,
+        student: StudentDTO,
         model: Model
     ): String {
         val studentWithId = generalFacade.saveStudent(student.buildToDomain())
-        model.addAttribute(studentWithId)
-        return "saved"
+        model.addAttribute("studentModel", studentWithId)
+        return "studentSaved"
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/studentProfile/{id}")
     fun getStudent(
         @PathVariable id: String,
         model: Model
     ): String {
         val student = generalFacade.getStudentById(id)
-        model.addAttribute(student)
-        return "ok"
+        model.addAttribute("studentModel", student)
+        return "studentProfile"
     }
 
     @GetMapping

@@ -3,10 +3,10 @@ package com.ufpe.if718.campibus.dto
 import com.ufpe.if718.campibus.model.entities.Student
 
 data class StudentDTO(
-    private var name: String,
-    private var age: Int,
-    private var school: String,
-    private var course: String,
+    private var name: String? = null,
+    private var age: Int? = null,
+    private var school: String? = null,
+    private var course: String? = null,
     private var busId: String? = null,
     private var creditCardId: String? = null,
 ) {

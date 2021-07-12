@@ -11,28 +11,28 @@ import javax.persistence.Table
 data class Card private constructor(
     @Id
     @Type(type="uuid-char")
-    private val id: UUID?,
-    private val ownerName: String?,
-    private val cardholder: String?,
-    private val number: String?,
-    private val validUntil: String?,
-    private val code: String?
+    public val id: UUID?,
+    public val ownerName: String?,
+    public val cardholder: String?,
+    public val number: String?,
+    public val validUntil: String?,
+    public val code: String?
 ) {
     data class Builder(
-        private var id: UUID? = null,
-        private var ownerName: String? = null,
-        private var cardholder: String? = null,
-        private var number: String? = null,
-        private var validUntil: String? = null,
-        private var code: String? = null
+        public var id: UUID? = null,
+        public var ownerName: String? = null,
+        public var cardholder: String? = null,
+        public var number: String? = null,
+        public var validUntil: String? = null,
+        public var code: String? = null
     ) {
 
         fun id() = apply { this.id = UUID.randomUUID() }
-        fun ownerName(ownerName: String) = apply { this.ownerName = ownerName }
-        fun cardholder(cardholder: String) = apply { this.cardholder = cardholder }
-        fun number(number: String) = apply { this.number = number }
-        fun validUntil(validUntil: String) = apply { this.validUntil = validUntil }
-        fun code(code: String) = apply { this.code = code }
+        fun ownerName(ownerName: String?) = apply { this.ownerName = ownerName }
+        fun cardholder(cardholder: String?) = apply { this.cardholder = cardholder }
+        fun number(number: String?) = apply { this.number = number }
+        fun validUntil(validUntil: String?) = apply { this.validUntil = validUntil }
+        fun code(code: String?) = apply { this.code = code }
         fun build() = Card(
             id = this.id,
             ownerName = ownerName,
