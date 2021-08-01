@@ -1,37 +1,28 @@
 package com.ufpe.if718.campibus.payment.controllers
 
+import com.ufpe.if718.campibus.payment.dto.MakePaymentDTO
 import com.ufpe.if718.campibus.payment.model.GeneralFacade
+import com.ufpe.if718.campibus.payment.model.entities.Payment
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
+import org.springframework.web.bind.annotation.*
 
-@Controller
-@RequestMapping("/payment")
+@RestController
+@RequestMapping("/payments")
 class PaymentController(private val generalFacade: GeneralFacade) {
 
-    @GetMapping("/makePayment/{studentId}/{cardId}")
+    @PostMapping
     fun makePayment(
-        @PathVariable(value = "studentId") studentId: String,
-        @PathVariable(value = "cardId") cardId: String,
-        model: Model
-    ): String {
-        val payment = generalFacade.payMonthBilling(cardId, studentId)
-        model.addAttribute("payment", payment)
-        model.addAttribute("studentId", studentId)
-        return "paymentSuccess"
+        @RequestBody requestBody: MakePaymentDTO
+    ): Payment {
+        return generalFacade.payMonthBilling(requestBody.cardId, requestBody.studentId)
     }
 
-    @GetMapping
+    @GetMapping("{studentId}")
     fun getPayments(
-        @RequestParam studentId: String,
-        model: Model
-    ): String {
-        val payments = generalFacade.getPayments(studentId)
-        model.addAttribute(payments)
-        return "payments"
+        @PathVariable studentId: String
+    ): List<Payment> {
+        return generalFacade.getPayments(studentId)
     }
 
 }

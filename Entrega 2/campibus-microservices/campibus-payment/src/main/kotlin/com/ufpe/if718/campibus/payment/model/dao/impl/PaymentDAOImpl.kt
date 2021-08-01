@@ -10,7 +10,8 @@ import java.util.*
 class PaymentDAOImpl(private val paymentRepository: PaymentRepository) : PaymentDAO {
 
     override fun save(payment: Payment): Payment {
-        return paymentRepository.save(payment)
+        val aaa = paymentRepository.save(payment)
+        return aaa
     }
 
     override fun getAllByStudentId(studentId: String): List<Payment> {

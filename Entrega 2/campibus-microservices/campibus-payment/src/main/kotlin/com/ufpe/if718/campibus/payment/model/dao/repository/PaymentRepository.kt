@@ -8,6 +8,6 @@ import java.util.*
 
 @Repository
 interface PaymentRepository : JpaRepository<Payment, UUID> {
-    @Query(value = "SELECT p FROM Payment p WHERE p.id = id ")
+    @Query(value = "SELECT p FROM Payment p WHERE p.studentId = id ")
     fun getAllByStudentId(id: UUID): List<Payment>
 }

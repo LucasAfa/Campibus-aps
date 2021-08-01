@@ -4,7 +4,7 @@ metadata:
   name: campibus-ingress
 spec:
   rules:
-  - host: unirep.website
+  - host: http://localhost
     http:
       paths:
       - path: /campibus-core

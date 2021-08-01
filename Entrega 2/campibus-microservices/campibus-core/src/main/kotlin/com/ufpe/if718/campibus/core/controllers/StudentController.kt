@@ -2,69 +2,46 @@ package com.ufpe.if718.campibus.core.controllers
 
 import com.ufpe.if718.campibus.core.dto.StudentDTO
 import com.ufpe.if718.campibus.core.model.GeneralFacade
-import org.springframework.stereotype.Controller
-import org.springframework.ui.Model
+import com.ufpe.if718.campibus.core.model.entities.Student
 import org.springframework.web.bind.annotation.*
 
 
-@Controller
-@RequestMapping("/student")
+@RestController
+@RequestMapping("/students")
 class StudentController(private val generalFacade: GeneralFacade) {
 
-    @GetMapping("/addStudentForm")
-    fun addStudentForm(model: Model): String {
-        val studentModel = StudentDTO().buildToDomain()
-        model.addAttribute("studentModel", studentModel)
-        return "addStudentForm"
-    }
-
-    @PostMapping("/saveStudent")
+    @PostMapping
     fun saveStudent(
-        student: StudentDTO,
-        model: Model
-    ): String {
-        val studentWithId = generalFacade.saveStudent(student.buildToDomain())
-        model.addAttribute("studentModel", studentWithId)
-        return "studentSaved"
+        @RequestBody student: StudentDTO
+    ): Student {
+        return generalFacade.saveStudent(student.buildToDomain())
     }
 
-    @GetMapping("/studentProfile/{id}")
+    @GetMapping("{id}")
     fun getStudent(
-        @PathVariable id: String,
-        model: Model
-    ): String {
-        val student = generalFacade.getStudentById(id)
-        model.addAttribute("studentModel", student)
-        return "studentProfile"
+        @PathVariable id: String
+    ): Student {
+        return generalFacade.getStudentById(id)
     }
 
     @GetMapping
-    fun getAllStudents(
-        model: Model
-    ): String {
-        val students = generalFacade.getAllStudents()
-        model.addAttribute(students)
-        return "studentList"
+    fun getAllStudents(): List<Student> {
+        return generalFacade.getAllStudents()
     }
 
-    @PatchMapping("{id}")
+    @PutMapping("{id}")
     fun updateStudent(
         @PathVariable id: String,
-        @RequestBody student: StudentDTO,
-        model: Model
-    ): String {
-        val student = generalFacade.updateStudent(id, student.buildToDomain())
-        model.addAttribute(student)
-        return "updated"
+        @RequestBody student: StudentDTO
+    ): Student {
+        return generalFacade.updateStudent(id, student.buildToDomain())
     }
 
     @DeleteMapping("{id}")
     fun deleteStudent(
-        @PathVariable id: String,
-        model: Model
-    ): String {
+        @PathVariable id: String
+    ) {
         generalFacade.deleteStudent(id)
-        return "deleted"
     }
 
 }

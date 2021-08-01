@@ -25,6 +25,11 @@ class CardDAOImpl(private val cardRepository: CardRepository, private val studen
         return cardRepository.findAll()
     }
 
+    override fun getAllByStudentId(studentId: String): List<Card> {
+        val id = UUID.fromString(studentId)
+        return cardRepository.getAllByStudentId(id)
+    }
+
     override fun delete(cardId: String) {
         val id = UUID.fromString(cardId)
         return cardRepository.deleteById(id)

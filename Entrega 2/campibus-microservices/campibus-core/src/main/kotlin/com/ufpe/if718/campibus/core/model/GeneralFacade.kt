@@ -43,6 +43,10 @@ class GeneralFacade(
         return cardService.getAll()
     }
 
+    fun getAllByStudentId(studentId: String): List<Card> {
+        return cardService.getAllByStudentId(studentId)
+    }
+
     fun saveCard(card: Card, studentId: String): Card {
         return cardService.save(card, studentId)
     }

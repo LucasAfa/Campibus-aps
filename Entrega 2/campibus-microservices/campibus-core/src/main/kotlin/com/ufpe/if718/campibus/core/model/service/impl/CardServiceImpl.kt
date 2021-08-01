@@ -4,6 +4,7 @@ import com.ufpe.if718.campibus.core.model.dao.CardDAO
 import com.ufpe.if718.campibus.core.model.entities.Card
 import com.ufpe.if718.campibus.core.model.service.CardService
 import org.springframework.stereotype.Service
+import java.util.*
 
 @Service
 class CardServiceImpl(private val cardDAO: CardDAO) : CardService {
@@ -18,6 +19,10 @@ class CardServiceImpl(private val cardDAO: CardDAO) : CardService {
 
     override fun getAll(): List<Card> {
         return cardDAO.getAll()
+    }
+
+    override fun getAllByStudentId(studentId: String): List<Card> {
+        return cardDAO.getAllByStudentId(studentId)
     }
 
     override fun delete(cardId: String) {

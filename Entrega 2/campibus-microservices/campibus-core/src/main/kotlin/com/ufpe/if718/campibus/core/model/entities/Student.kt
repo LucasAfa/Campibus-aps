@@ -11,24 +11,22 @@ import javax.persistence.Table
 @Entity
 data class Student private constructor(
     @Id
-    @Type(type = "uuid-char")
-    public val id: UUID?,
-    public val name: String?,
-    public val age: Int?,
-    public val school: String?,
-    public val course: String?,
-    public val busId: String? = null,
-    @OneToOne
-    public val card: Card? = null,
+    @Type(type = "uuid-char") val id: UUID?,
+    val name: String?,
+    val age: Int?,
+    val school: String?,
+    val course: String?,
+    val busId: String? = null,
+    @OneToOne val card: Card? = null,
 ) {
     data class Builder(
-        public var id: UUID? = null,
-        public var name: String? = null,
-        public var age: Int? = null,
-        public var school: String? = null,
-        public var course: String? = null,
-        public var busId: String? = null,
-        public var card: Card? = null,
+        var id: UUID? = null,
+        var name: String? = null,
+        var age: Int? = null,
+        var school: String? = null,
+        var course: String? = null,
+        var busId: String? = null,
+        var card: Card? = null,
     ) {
 
         fun id() = apply { this.id = UUID.randomUUID() }

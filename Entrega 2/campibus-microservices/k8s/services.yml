@@ -12,10 +12,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: ks-core-service
+  name: campibus-payment-service
 spec:
   selector:
-    app: ks-core
+    app: campibus-payment
   ports:
   - port: 8081
     targetPort: 8080

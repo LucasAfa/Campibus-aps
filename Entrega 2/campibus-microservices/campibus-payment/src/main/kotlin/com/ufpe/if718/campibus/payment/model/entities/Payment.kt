@@ -12,24 +12,24 @@ data class Payment private constructor(
     @Id
     @Type(type = "uuid-char")
     private val id: UUID?,
-    private val student: UUID?,
+    private val studentId: UUID?,
     private val timestamp: String?,
     private val amount: Double?
 ) {
     data class Builder(
         private var id: UUID? = null,
-        private var student: UUID? = null,
+        private var studentId: UUID? = null,
         private var timestamp: String? = null,
         private var amount: Double? = null
 
     ) {
         fun id() = apply { this.id = UUID.randomUUID() }
-        fun student(studentId: String) = apply { this.student = UUID.fromString(studentId) }
+        fun student(studentId: String) = apply { this.studentId = UUID.fromString(studentId) }
         fun timestamp(timestamp: String) = apply { this.timestamp = timestamp }
         fun amount(amount: Double) = apply { this.amount = amount }
         fun build() = Payment(
             id = id,
-            student = student,
+            studentId = studentId,
             timestamp = timestamp,
             amount = amount
         )

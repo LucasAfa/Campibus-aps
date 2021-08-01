@@ -1,0 +1,14 @@
+server:
+  servlet:
+    context-path: /campibus-core
+spring:
+  datasource:
+    password: admin
+    url: jdbc:h2:mem:db_campibus_core
+    username: admin
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+

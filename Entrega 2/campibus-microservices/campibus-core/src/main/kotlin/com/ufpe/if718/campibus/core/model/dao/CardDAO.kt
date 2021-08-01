@@ -6,5 +6,6 @@ interface CardDAO {
     fun save(card: Card, studentId: String): Card
     fun getById(cardId: String): Card
     fun getAll(): List<Card>
+    fun getAllByStudentId(studentId: String): List<Card>
     fun delete(cardId: String)
 }

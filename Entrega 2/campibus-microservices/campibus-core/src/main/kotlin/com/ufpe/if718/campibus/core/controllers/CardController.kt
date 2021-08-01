@@ -1,62 +1,45 @@
 package com.ufpe.if718.campibus.core.controllers
 
-import com.ufpe.if718.campibus.core.dto.CardDTO
+import com.ufpe.if718.campibus.core.dto.SaveCardDTO
 import com.ufpe.if718.campibus.core.model.GeneralFacade
-import org.springframework.stereotype.Controller
-import org.springframework.ui.Model
+import com.ufpe.if718.campibus.core.model.entities.Card
 import org.springframework.web.bind.annotation.*
 
-@Controller
-@RequestMapping("/card")
+@RestController
+@RequestMapping("/cards")
 class CardController(private val generalFacade: GeneralFacade) {
 
-    @GetMapping("/addCardForm/{studentId}")
-    fun addCardForm(@PathVariable studentId: String, model: Model): String {
-        val cardModel = CardDTO().buildToDomain()
-        model.addAttribute("cardModel", cardModel)
-        model.addAttribute("studentId", studentId)
-        return "addCardForm"
-    }
-
-    @PostMapping("/saveCard/{studentId}")
+    @PostMapping
     fun saveCard(
-        @PathVariable studentId: String,
-        requestBody: CardDTO,
-        model: Model
-    ): String {
-        generalFacade.saveCard(requestBody.buildToDomain(), studentId)
-        model.addAttribute("studentId", studentId)
-        return "cardSaved"
+        @RequestBody requestBody: SaveCardDTO
+    ): Card {
+        return generalFacade.saveCard(requestBody.card.buildToDomain(), requestBody.studentId)
     }
 
     @GetMapping("{id}")
     fun getCard(
-        @PathVariable id: String,
-        model: Model
-    ): String {
-        val card = generalFacade.getCardById(id)
-        model.addAttribute(card)
-        return "ok-card"
+        @PathVariable id: String
+    ): Card {
+        return generalFacade.getCardById(id)
     }
 
-    @GetMapping("/cardsList/{studentId}")
+    @GetMapping
+    fun getAllCards(): List<Card> {
+        return generalFacade.getAllCards()
+    }
+
+    @GetMapping("student/{studentId}")
     fun getAllCards(
-        @PathVariable studentId: String,
-        model: Model
-    ): String {
-        val cards = generalFacade.getAllCards()
-        model.addAttribute("cards", cards)
-        model.addAttribute("studentId", studentId)
-        return "cardsList"
+        @PathVariable studentId: String
+    ): List<Card> {
+        return generalFacade.getAllByStudentId(studentId)
     }
 
     @DeleteMapping("{id}")
     fun deleteCard(
-        @PathVariable id: String,
-        model: Model
-    ): String {
+        @PathVariable id: String
+    ) {
         generalFacade.deleteCard(id)
-        return "cardDeleted"
     }
 
 }

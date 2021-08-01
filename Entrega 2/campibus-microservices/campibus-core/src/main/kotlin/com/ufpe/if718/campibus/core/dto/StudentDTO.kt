@@ -3,12 +3,12 @@ package com.ufpe.if718.campibus.core.dto
 import com.ufpe.if718.campibus.core.model.entities.Student
 
 data class StudentDTO(
-    private var name: String? = null,
-    private var age: Int? = null,
-    private var school: String? = null,
-    private var course: String? = null,
-    private var busId: String? = null,
-    private var creditCardId: String? = null,
+    val name: String? = null,
+    val age: Int? = null,
+    val school: String? = null,
+    val course: String? = null,
+    val busId: String? = null,
+    val creditCardId: String? = null,
 ) {
     fun buildToDomain(): Student {
         return Student.Builder()
