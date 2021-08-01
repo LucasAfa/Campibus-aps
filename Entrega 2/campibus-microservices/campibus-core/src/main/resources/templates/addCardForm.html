@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Cartão</title>
+</head>
+<body>
+<h2>Vamos cadastrar um cartão.</h2>
+<form action="#" method="post" th:action="@{/card/saveCard/{studentId}(studentId=${studentId})}"
+      th:object="${cardModel}">
+    <p>Número: <input th:field="*{number}" type="text"/></p>
+    <p>Bandeira: <input th:field="*{cardholder}" type="text"/></p>
+    <p>Válido até: <input th:field="*{validUntil}" type="text"/></p>
+    <p>CVV: <input th:field="*{code}" type="text"/></p>
+    <p>Nome no cartão: <input th:field="*{ownerName}" type="text"/></p>
+    <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+</form>
+</body>
+</html>

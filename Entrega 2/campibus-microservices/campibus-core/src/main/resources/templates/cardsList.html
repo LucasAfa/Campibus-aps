@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Meus cartões</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th> Número</th>
+        <th> Data de validade</th>
+        <th> Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="card : ${cards}">
+        <td><span th:text="${card.number}"> </span></td>
+        <td><span th:text="${card.validUntil}"></span></td>
+        <td><a th:href="@{/payment/makePayment/{studentId}/{cardId}(studentId=${studentId},cardId=${card.id})}">Pagar
+            com este cartão</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: campibus-core
+spec:
+  selector:
+    matchLabels:
+      app: campibus-core
+  template:
+    metadata:
+      labels:
+        app: campibus-core
+    spec:
+      containers:
+        - name: campibus-core
+          image: mathlimma/campibus-core:latest
+          ports:
+            - containerPort: 8080
+          imagePullPolicy: Always

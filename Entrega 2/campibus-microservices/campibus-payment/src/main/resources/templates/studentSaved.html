@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Estudante cadastrado!</title>
+</head>
+<body>
+  Você foi cadastrado!
+  <a th:href="@{/student/studentProfile/{id}(id=${studentModel.id})}">Ir para Meu Perfil</a>
+</body>
+</html>

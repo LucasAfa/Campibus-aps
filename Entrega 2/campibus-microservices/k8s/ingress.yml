@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: campibus-ingress
+spec:
+  rules:
+  - host: unirep.website
+    http:
+      paths:
+      - path: /campibus-core
+        backend:
+          serviceName: campibus-core-service
+          servicePort: 8080
+      - path: /campibus-payment
+        backend:
+          serviceName: campibus-payment-service
+          servicePort: 8081
