@@ -1,17 +1,23 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: campibus-ingress
 spec:
   rules:
-  - host: http://localhost
+  - host: localhost
     http:
       paths:
       - path: /campibus-core
+        pathType: Prefix
         backend:
-          serviceName: campibus-core-service
-          servicePort: 8080
-      - path: /campibus-payment
+          service:
+            name: campibus-core-service
+            port: 
+              number: 8080
+      - path: /campibus-payments
+        pathType: Prefix
         backend:
-          serviceName: campibus-payment-service
-          servicePort: 8081
+          service: 
+            name: campibus-payments-service
+            port: 
+              number: 8081

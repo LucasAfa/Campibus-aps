@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: campibus-payment
+  name: campibus-payments
 spec:
   selector:
     matchLabels:
-      app: campibus-payment
+      app: campibus-payments
   template:
     metadata:
       labels:
-        app: campibus-payment
+        app: campibus-payments
     spec:
       containers:
         - name: campibus-core
-          image: mathlimma/campibus-payment:latest
+          image: mathlimma/campibus-payments:latest
           ports:
             - containerPort: 8080
           imagePullPolicy: Always
