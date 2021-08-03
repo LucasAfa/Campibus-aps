@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: campibus-payments
+  name: campibus-digital-wallet
 spec:
   selector:
     matchLabels:
-      app: campibus-payments
+      app: campibus-digital-wallet
   template:
     metadata:
       labels:
-        app: campibus-payments
+        app: campibus-digital-wallet
     spec:
       containers:
-        - name: campibus-payments
-          image: mathlimma/campibus-payments:latest
+        - name: campibus-digital-wallet
+          image: mathlimma/campibus-digital-wallet:latest
           ports:
             - containerPort: 8080
           imagePullPolicy: Always
