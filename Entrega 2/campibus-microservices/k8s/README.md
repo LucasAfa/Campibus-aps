@@ -2,7 +2,7 @@
 
 ### install kind
 
-https://kind.sigs.k8s.io/docs/user/quick-start/
+https://kind.sigs.k8s.io/docs/user/quick-start/#installation
 
 ### create cluster:
 
