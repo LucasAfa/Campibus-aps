@@ -29,7 +29,7 @@ EOF
 ```
 - check if it's working
 
-```$ kubectl get nodes```
+```$ kubectl cluster-info --context kind-campibus && kubectl get nodes```
 
 ### run script:
 

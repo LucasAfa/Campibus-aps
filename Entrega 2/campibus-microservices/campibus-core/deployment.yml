@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: campibus-core
 spec:
+  replicas: 2
   selector:
     matchLabels:
       app: campibus-core
