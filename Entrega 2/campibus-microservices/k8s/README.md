@@ -29,8 +29,12 @@ EOF
 ```
 - check if it's working
 
-```$ kubectl cluster-info --context kind-campibus && kubectl get nodes```
+```
+kubectl cluster-info --context kind-campibus && kubectl get nodes
+```
 
 ### run script:
 
-```$ bash deploy.sh```
+```
+bash deploy.sh
+```
