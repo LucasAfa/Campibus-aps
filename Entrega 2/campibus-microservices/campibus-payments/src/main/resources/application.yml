@@ -9,4 +9,4 @@ spring:
       path: /h2-console
 server:
   servlet:
-    context-path: /campibus-paymentss
+    context-path: /campibus-payments

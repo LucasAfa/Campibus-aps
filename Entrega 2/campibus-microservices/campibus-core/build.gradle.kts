@@ -8,7 +8,7 @@ plugins {
 	kotlin("plugin.jpa") version "1.5.20"
 }
 
-group = "com.ufpe.if718"
+group = "com.ufpe.if718.core"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
 extra["springCloudVersion"] = "2020.0.3"
@@ -18,6 +18,7 @@ repositories {
 }
 
 dependencies {
+	implementation("org.springframework.kafka:spring-kafka")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")

@@ -8,25 +8,33 @@ import javax.persistence.Table
 
 @Table(name = "tb_wallet")
 @Entity
-data class Wallet private constructor(
+data class Wallet constructor(
     @Id
-    @Type(type = "uuid-char")
-    private val id: UUID?,
-    private var student: String?,
-    private var bus: String?
+    @Type(type = "uuid-char") val id: UUID?,
+    val name: String?,
+    val age: Int?,
+    val school: String?,
+    val course: String?,
 ) {
     data class Builder(
-        private var id: UUID? = null,
-        private var student: String? = null,
-        private var bus: String? = null
+        var id: UUID? = null,
+        var name: String? = null,
+        var age: Int? = null,
+        var school: String? = null,
+        var course: String? = null,
     ) {
-        fun id(studentId: String) = apply { this.id = UUID.fromString(studentId) }
-        fun student(student: String) = apply { this.student = student }
-        fun bus(bus: String) = apply { this.bus = bus }
+
+        fun id() = apply { this.id = UUID.randomUUID() }
+        fun name(name: String?) = apply { this.name = name }
+        fun age(age: Int?) = apply { this.age = age }
+        fun school(school: String?) = apply { this.school = school }
+        fun course(course: String?) = apply { this.course = course }
         fun build() = Wallet(
             id = id,
-            student = student,
-            bus = bus
+            name = name,
+            age = age,
+            school = school,
+            course = course,
         )
     }
 }

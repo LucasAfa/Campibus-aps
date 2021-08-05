@@ -13,4 +13,8 @@ class GeneralFacade(
         return walletService.getWallet(studentId)
     }
 
+    fun generateWallet(content: String): Wallet {
+        return walletService.generateWallet(content)
+    }
+
 }

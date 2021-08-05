@@ -3,13 +3,16 @@ package com.ufpe.if718.campibus.core.model.service.impl
 import com.ufpe.if718.campibus.core.model.dao.StudentDAO
 import com.ufpe.if718.campibus.core.model.entities.Student
 import com.ufpe.if718.campibus.core.model.service.StudentService
+import com.ufpe.if718.campibus.core.producer.KafkaStudentWalletProducer
 import org.springframework.stereotype.Service
 
 @Service
-class StudentServiceImpl(private val studentDAO: StudentDAO) : StudentService {
+class StudentServiceImpl(private val studentDAO: StudentDAO, private val walletProducer: KafkaStudentWalletProducer) : StudentService {
 
     override fun save(student: Student): Student {
-        return studentDAO.save(student)
+        val studentSaved = studentDAO.save(student)
+        walletProducer.sendUpdateStudentWallet(studentSaved)
+        return studentSaved
     }
 
     override fun getById(studentId: String): Student {
@@ -21,7 +24,9 @@ class StudentServiceImpl(private val studentDAO: StudentDAO) : StudentService {
     }
 
     override fun updateById(studentId: String, student: Student): Student {
-        return studentDAO.updateById(studentId, student)
+        val studentSaved = studentDAO.updateById(studentId, student)
+        walletProducer.sendUpdateStudentWallet(studentSaved)
+        return studentSaved
     }
 
     override fun delete(studentId: String) {
