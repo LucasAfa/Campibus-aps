@@ -21,9 +21,8 @@ dependencies {
 	implementation("org.apache.kafka:kafka-streams")
 	implementation("org.springframework.kafka:spring-kafka")
 	testImplementation("org.springframework.kafka:spring-kafka-test")
-
 	implementation("org.modelmapper:modelmapper:2.1.1")
-
+	testImplementation("org.apache.httpcomponents:httpclient:4.5.13")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")

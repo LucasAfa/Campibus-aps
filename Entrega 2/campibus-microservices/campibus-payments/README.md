@@ -1,4 +1,3 @@
-
 install jsonserver: npm install -g json-server
 
 Subir api de integração de pagamento:

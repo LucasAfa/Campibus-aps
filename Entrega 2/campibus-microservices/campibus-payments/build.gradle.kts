@@ -25,6 +25,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
 	runtimeOnly("com.h2database:h2")
+	testImplementation("org.apache.httpcomponents:httpclient:4.5.13")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 
 }
