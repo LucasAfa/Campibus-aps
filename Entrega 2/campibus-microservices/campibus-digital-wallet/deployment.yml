@@ -16,5 +16,5 @@ spec:
         - name: campibus-digital-wallet
           image: mathlimma/campibus-digital-wallet:latest
           ports:
-            - containerPort: 8080
+            - containerPort: 8082
           imagePullPolicy: Always
