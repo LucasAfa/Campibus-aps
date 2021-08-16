@@ -36,5 +36,10 @@ kubectl cluster-info --context kind-campibus && kubectl get nodes
 ### run script:
 
 ```
-bash deploy.sh
+bash kafka.sh
+```
+and 
+
+```
+bash k8s.sh
 ```

@@ -2,5 +2,8 @@
 # run kafka
 docker-compose up -d
 
-# start proxy
-ssh -R campibus.lhr.rocks:80:localhost:9092 plan@localhost.run
+# payment service integration setup
+
+npm install -g json-server
+
+json-server --watch db.json --port 3004

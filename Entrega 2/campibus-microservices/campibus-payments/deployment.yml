@@ -16,5 +16,5 @@ spec:
         - name: campibus-payments
           image: mathlimma/campibus-payments:latest
           ports:
-            - containerPort: 8080
+            - containerPort: 8081
           imagePullPolicy: Always
