@@ -1,0 +1,15 @@
+<h2>Pagamentos</h2>
+<mat-progress-bar mode="query" *ngIf="!paymentsLoaded"></mat-progress-bar>
+<h3 *ngIf="paymentsLoaded && payments.length === 0">Ainda não há pagamentos</h3>
+<table *ngIf="paymentsLoaded" mat-table [dataSource]="payments" class="mat-elevation-z8">
+  <ng-container matColumnDef="timestamp">
+    <th mat-header-cell *matHeaderCellDef> Data </th>
+    <td mat-cell *matCellDef="let element"> {{element.timestamp}} </td>
+  </ng-container>
+  <ng-container matColumnDef="amount">
+    <th mat-header-cell *matHeaderCellDef> Valor </th>
+    <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

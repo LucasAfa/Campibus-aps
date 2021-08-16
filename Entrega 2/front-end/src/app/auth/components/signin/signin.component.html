@@ -1,0 +1,22 @@
+<mat-card>
+    <h2>Login</h2>
+    <form>
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label>E-mail</mat-label>
+                <input matInput placeholder="joao@gmail.com" [formControl]="email" required>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="outline">
+                <mat-label>Senha</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password" required>
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Esconder senha'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+          </p>
+    </form>
+    <button mat-flat-button color="primary" [routerLink]="['/admin']">Entrar (Admin)</button>
+    <button mat-flat-button color="primary" [routerLink]="['/student/cea389c3-0c05-4855-906c-452b58f09252']">Entrar (Estudante)</button>
+</mat-card>

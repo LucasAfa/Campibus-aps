@@ -1,0 +1,13 @@
+<h1>Estudante</h1>
+<mat-divider></mat-divider>
+<section *ngIf="loadedStudent">
+    <h2>Olá, {{ digitalWalletModel.name }}!</h2>
+</section>
+<mat-tab-group>
+    <mat-tab label="Carteirinha Digital">
+        <app-digital-wallet [digitalWalletModel]="digitalWalletModel"></app-digital-wallet>
+    </mat-tab>
+    <mat-tab label="Cartões">
+        <app-cards-list [studentId]="studentId"></app-cards-list>
+    </mat-tab>
+</mat-tab-group>

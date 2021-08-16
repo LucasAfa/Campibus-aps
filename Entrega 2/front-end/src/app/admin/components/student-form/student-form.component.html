@@ -1,0 +1,30 @@
+<mat-card>
+    <h2>{{ data.type === 'add' ? 'Cadastro' : 'Edição'}} de Estudante</h2>
+    <form>
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label>Nome</mat-label>
+                <input matInput placeholder="João das Neves" [formControl]="name" required>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="outline">
+                <mat-label>Idade</mat-label>
+                <input matInput placeholder="20" [formControl]="age" required type="number">
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="outline">
+                <mat-label>Centro</mat-label>
+                <input matInput placeholder="CIn" [formControl]="school" required>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="outline">
+                <mat-label>Curso</mat-label>
+                <input matInput placeholder="Ciência da Computação" [formControl]="course" required>
+            </mat-form-field>
+          </p>
+    </form>
+    <button mat-flat-button color="primary" (click)="saveStudent()">{{ data.type === 'add' ? 'Cadastrar' : 'Salvar'}}</button>
+</mat-card>

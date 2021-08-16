@@ -1,0 +1,33 @@
+<section class="buttons">
+    <button mat-flat-button color="primary" (click)="openStudentAddModal()">Cadastrar Novo Estudante</button>
+</section>
+<mat-progress-bar mode="query" *ngIf="!studentsLoaded"></mat-progress-bar>
+<h3 *ngIf="studentsLoaded && students.length === 0">Ainda não há estudantes cadastrados</h3>
+<table *ngIf="studentsLoaded" mat-table [dataSource]="students" class="mat-elevation-z8">
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Nome </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+  <ng-container matColumnDef="age">
+    <th mat-header-cell *matHeaderCellDef> Idade </th>
+    <td mat-cell *matCellDef="let element"> {{element.age}} </td>
+  </ng-container>
+  <ng-container matColumnDef="school">
+    <th mat-header-cell *matHeaderCellDef> Centro </th>
+    <td mat-cell *matCellDef="let element"> {{element.school}} </td>
+  </ng-container>
+  <ng-container matColumnDef="course">
+    <th mat-header-cell *matHeaderCellDef> Curso </th>
+    <td mat-cell *matCellDef="let element"> {{element.course}} </td>
+  </ng-container>
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> Ações </th>
+    <td mat-cell *matCellDef="let element">
+      <mat-icon (click)="seePaymentsModal(element.id)">visibility</mat-icon>
+      <mat-icon (click)="openStudentEditModal(element)">edit</mat-icon>
+      <mat-icon (click)="deleteStudent(element.id)">delete</mat-icon>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

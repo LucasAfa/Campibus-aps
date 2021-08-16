@@ -1,0 +1,36 @@
+<mat-card>
+    <h2>{{ data.type === 'add' ? 'Cadastro' : 'Edição'}} de Cartão</h2>
+    <form>
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label>Nome no cartão</mat-label>
+                <input matInput placeholder="João das Neves" [formControl]="ownerName" required>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="outline">
+                <mat-label>Bandeira</mat-label>
+                <input matInput placeholder="MasterCard" [formControl]="cardHolder" required>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="outline">
+                <mat-label>Número</mat-label>
+                <input matInput placeholder="9999999" [formControl]="number" required>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="outline">
+                <mat-label>Valido até</mat-label>
+                <input matInput placeholder="08/28" [formControl]="validUntil" required>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="outline">
+                <mat-label>CVV</mat-label>
+                <input matInput placeholder="123" [formControl]="code" required>
+            </mat-form-field>
+          </p>
+    </form>
+    <button mat-flat-button color="primary" (click)="saveCard()">{{ data.type === 'add' ? 'Cadastrar' : 'Salvar'}}</button>
+</mat-card>

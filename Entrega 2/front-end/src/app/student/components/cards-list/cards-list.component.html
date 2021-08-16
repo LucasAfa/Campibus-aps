@@ -1,0 +1,36 @@
+<section class="buttons">
+    <button mat-flat-button color="primary" (click)="openCardAddModal()">Cadastrar Novo Cartão</button>
+</section>
+<mat-progress-bar mode="query" *ngIf="!cardsLoaded"></mat-progress-bar>
+<h3 *ngIf="cardsLoaded && cards.length === 0">Ainda não há cartões cadastrados</h3>
+<table *ngIf="cardsLoaded" mat-table [dataSource]="cards" class="mat-elevation-z8">
+  <ng-container matColumnDef="ownerName">
+    <th mat-header-cell *matHeaderCellDef> Nome no cartão </th>
+    <td mat-cell *matCellDef="let element"> {{element.ownerName}} </td>
+  </ng-container>
+  <ng-container matColumnDef="cardholder">
+    <th mat-header-cell *matHeaderCellDef> Bandeira </th>
+    <td mat-cell *matCellDef="let element"> {{element.cardholder}} </td>
+  </ng-container>
+  <ng-container matColumnDef="number">
+    <th mat-header-cell *matHeaderCellDef> Número </th>
+    <td mat-cell *matCellDef="let element"> {{element.number}} </td>
+  </ng-container>
+  <ng-container matColumnDef="validUntil">
+    <th mat-header-cell *matHeaderCellDef> Valido até </th>
+    <td mat-cell *matCellDef="let element"> {{element.validUntil}} </td>
+  </ng-container>
+  <ng-container matColumnDef="code">
+    <th mat-header-cell *matHeaderCellDef> CVV </th>
+    <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+  </ng-container>
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> Ações </th>
+    <td mat-cell *matCellDef="let element">
+      <mat-icon (click)="pay(element.id)">paid</mat-icon>
+      <mat-icon (click)="deleteCard(element.id)">delete</mat-icon>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
